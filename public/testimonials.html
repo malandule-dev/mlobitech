@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MM-INNOVATION TECH — Testimonials</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="header">
+<nav>
+  <a href="home.html" class="logo">MM<span>-INNOVATION</span></a>
+  <div class="nav-links" id="navLinks">
+    <i class="fa fa-times" onclick="hideMenu()"></i>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="testimonials.html" class="active">Testimonials</a></li>
+    </ul>
+  </div>
+  <i class="fa fa-bars" onclick="showMenu()"></i>
+</nav>
+  <div class="text-box">
+    <span class="eyebrow">Testimonials</span>
+    <h1>What People Say About <span class="highlight">MM-Innovation</span></h1>
+    <p>Real feedback from the clients and interns who have experienced our work firsthand.</p>
+    <div class="btn-group">
+      <a href="contact.html" class="hero-btn primary">Get In Touch</a>
+      <a href="services.html" class="hero-btn outline">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT TESTIMONIALS -->
+<section class="testimonials" style="background:var(--bg);">
+  <span class="badge badge-cyan">Client Testimonials</span>
+  <h2 class="section-title">What Our Clients Say</h2>
+  <p class="section-sub">Explore our products and services and take your business to the next level.</p>
+  <div class="testimonials-grid" id="client-grid">
+    <div style="text-align:center;padding:2rem;color:#7a8499;width:100%;">
+      <i class="fa fa-spinner fa-spin" style="font-size:1.5rem;"></i>
+      <p style="margin-top:.8rem;">Loading...</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERN TESTIMONIALS -->
+<section class="testimonials" style="background:var(--bg2);">
+  <span class="badge badge-purple">Intern Testimonials</span>
+  <h2 class="section-title">Voices from Our Interns</h2>
+  <p class="section-sub">Hear from the next generation of innovators who trained with us.</p>
+  <div class="testimonials-grid" id="intern-grid">
+    <div style="text-align:center;padding:2rem;color:#7a8499;width:100%;">
+      <i class="fa fa-spinner fa-spin" style="font-size:1.5rem;"></i>
+      <p style="margin-top:.8rem;">Loading...</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h1>Enroll for Our Various<br>Online Courses Anywhere</h1>
+  <a href="contact.html" class="hero-btn primary">Contact Us</a>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="home.html" class="logo" style="font-size:1.1rem;">MM<span>-INNOVATION</span></a>
+      <p>Learn more about our mission to groom young entrepreneurs to the highest level of innovation and excellence.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="services.html">Web App Dev</a></li>
+        <li><a href="services.html">Website Dev</a></li>
+        <li><a href="services.html">Mobile Apps</a></li>
+        <li><a href="services.html">AI Solutions</a></li>
+        <li><a href="services.html">Cloud Services</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul class="footer-contact">
+        <li><i class="fa fa-map-marker"></i> Mbombela, Mpumalanga</li>
+        <li><i class="fa fa-phone"></i><a href="tel:+27725335234">(+27) 72 5335 234</a></li>
+        <li><i class="fa fa-envelope"></i><a href="mailto:malandulemichael@gmail.com">malandulemichael@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2024 MM-INNOVATION TECH. All rights reserved. Website made with <i class="fa fa-heart-o"></i> by malandulemichael@gmail.com</span>
+    <div class="social-icons">
+      <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showMenu(){ document.getElementById('navLinks').classList.add('open'); }
+  function hideMenu(){ document.getElementById('navLinks').classList.remove('open'); }
+
+  function renderStars(rating) {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+      stars += `<i class="fa fa-star${i <= rating ? '' : '-o'}"></i>`;
+    }
+    return stars;
+  }
+
+  function renderCards(data, gridId, emptyMsg) {
+    const grid = document.getElementById(gridId);
+    if (!data.length) {
+      grid.innerHTML = `<p style="text-align:center;color:#7a8499;width:100%;padding:2rem;">${emptyMsg}</p>`;
+      return;
+    }
+    grid.innerHTML = data.map(t => `
+      <div class="testimonials-col">
+        <div class="testi-header">
+          <img src="${t.image_url || 'images/user1.jpg'}" alt="${t.name}">
+          <div><h3>${t.name}</h3><div class="role">${t.role || ''}</div></div>
+        </div>
+        <p class="testi-quote">${t.message}</p>
+        <div class="stars">${renderStars(t.rating)}</div>
+      </div>`).join('');
+  }
+
+  async function loadTestimonials() {
+    try {
+      const [clients, interns] = await Promise.all([
+        fetch('/api/testimonials?type=client').then(r => r.json()),
+        fetch('/api/testimonials?type=intern').then(r => r.json()),
+      ]);
+      renderCards(clients, 'client-grid', 'No client testimonials yet.');
+      renderCards(interns, 'intern-grid', 'No intern testimonials yet.');
+    } catch {
+      document.getElementById('client-grid').innerHTML = '<p style="text-align:center;color:#7a8499;width:100%;padding:2rem;">Failed to load testimonials.</p>';
+      document.getElementById('intern-grid').innerHTML = '';
+    }
+  }
+
+  loadTestimonials();
+</script>
+</body>
+</html>

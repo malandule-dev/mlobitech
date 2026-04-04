@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MM-INNOVATION TECH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    :root {
+      --bg: #060910;
+      --bg2: #0c1120;
+      --accent: #00e5ff;
+      --accent2: #7b61ff;
+      --text: #e8eaf0;
+      --muted: #7a8499;
+      --card: #0f1826;
+      --border: rgba(0,229,255,0.12);
+      --grad: linear-gradient(135deg, #00e5ff22, #7b61ff22);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, nav a {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 6%;
+      background: rgba(6,9,16,0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .logo span { color: var(--text); }
+
+    .nav-links ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links ul li a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links ul li a:hover,
+    .nav-links ul li a.active { color: var(--accent); }
+
+    .fa-bars, .fa-times {
+      display: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--accent);
+    }
+
+    /* ── HERO ── */
+    .header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 8rem 6% 5rem;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,229,255,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(123,97,255,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* grid overlay */
+    .header::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .text-box {
+      text-align: center;
+      max-width: 820px;
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .text-box .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--border);
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      background: rgba(0,229,255,0.06);
+    }
+
+    .text-box h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.2rem;
+    }
+    .text-box h1 .highlight {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .text-box p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .hero-btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      transition: all 0.25s;
+    }
+    .hero-btn.primary {
+      background: var(--accent);
+      color: #060910;
+    }
+    .hero-btn.primary:hover {
+      background: #33eaff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,229,255,0.3);
+    }
+    .hero-btn.outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .hero-btn.outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 6rem 6%; }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.8rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* ── SERVICES ── */
+    .Services { background: var(--bg2); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: var(--grad);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { transform: translateY(-5px); border-color: rgba(0,229,255,0.35); box-shadow: 0 12px 40px rgba(0,229,255,0.08); }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: rgba(0,229,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    .service-card p, .service-card li {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .service-card ul { list-style: none; }
+    .service-card ul li { padding: 0.25rem 0; }
+    .service-card ul li::before { content: '→ '; color: var(--accent); font-size: 0.8rem; }
+
+    /* ── COMPANY / LOCATIONS ── */
+    .company-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .company-col {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .company-col img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.55) saturate(0.7);
+      transition: filter 0.3s, transform 0.4s;
+    }
+    .company-col:hover img { filter: brightness(0.7) saturate(1); transform: scale(1.04); }
+    .company-col .layer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.2rem 1.5rem;
+      background: linear-gradient(transparent, rgba(6,9,16,0.88));
+    }
+    .company-col .layer h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── FACILITIES ── */
+    .facilities { background: var(--bg2); }
+
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .facilities-col {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .facilities-col img {
+      width: 100%; height: 200px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.7) saturate(0.8);
+      transition: filter 0.3s;
+    }
+    .facilities-col:hover img { filter: brightness(0.85) saturate(1); }
+    .facilities-col-body { padding: 1.4rem; }
+    .facilities-col-body h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    .facilities-col-body p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonials-col {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .testimonials-col:hover { border-color: rgba(123,97,255,0.35); transform: translateY(-4px); }
+
+    .testi-header { display: flex; align-items: center; gap: 1rem; }
+    .testi-header img {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent2);
+    }
+    .testi-header h3 { font-size: 0.9rem; font-weight: 700; }
+    .testi-header .role { font-size: 0.78rem; color: var(--muted); margin-top: 0.15rem; }
+
+    .testi-quote {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
+      border-left: 2px solid var(--accent2);
+      padding-left: 1rem;
+    }
+
+    .stars { color: var(--accent); font-size: 0.8rem; }
+    .stars .fa-star-o, .stars .fa-star-half-o { color: #3a4060; }
+
+    .testi-section-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border: 1px solid rgba(123,97,255,0.2);
+      background: rgba(123,97,255,0.07);
+      display: inline-block;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,229,255,0.07), rgba(123,97,255,0.07));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .cta h1 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 4rem 6% 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; margin-top: 0.8rem; }
+    .footer-col h4 { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.5rem; }
+    .footer-col ul li a { text-decoration: none; font-size: 0.87rem; color: var(--muted); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--accent); }
+
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      font-size: 0.87rem;
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+    .footer-contact li i { color: var(--accent); margin-top: 2px; width: 16px; }
+    .footer-contact li a { color: var(--muted); text-decoration: none; }
+    .footer-contact li a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .social-icons { display: flex; gap: 0.8rem; }
+    .social-icons a {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-icons a:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,229,255,0.07); }
+
+    /* ── CONTACT FORM ── */
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 900px;
+    }
+    .contact-form-group { margin-bottom: 1.2rem; }
+    .contact-form-group input,
+    .contact-form-group textarea {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.85rem 1.1rem;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .contact-form-group input::placeholder,
+    .contact-form-group textarea::placeholder { color: var(--muted); }
+    .contact-form-group input:focus,
+    .contact-form-group textarea:focus { border-color: var(--accent); }
+    .contact-form-group textarea { resize: vertical; min-height: 130px; }
+    .send-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      background: var(--accent);
+      color: #060910;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .send-btn:hover { background: #33eaff; transform: translateY(-2px); }
+
+    .direct-contact { display: flex; flex-direction: column; gap: 1.2rem; justify-content: center; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contact-icon {
+      width: 40px; height: 40px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .contact-item p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.15rem; }
+    .contact-item a, .contact-item span { font-size: 0.9rem; color: var(--text); text-decoration: none; }
+    .contact-item a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 70%; background: var(--bg2); flex-direction: column; padding: 5rem 2rem 2rem; z-index: 200; border-left: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .nav-links ul { flex-direction: column; gap: 1.5rem; }
+      .fa-bars { display: block; }
+      .fa-times { display: block; position: absolute; top: 1.5rem; right: 1.5rem; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a href="index.html" class="logo">MM<span>-INNOVATION</span></a>
+    <div class="nav-links" id="navLinks">
+      <i class="fa fa-times" onclick="hideMenu()"></i>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+      </ul>
+    </div>
+    <i class="fa fa-bars" onclick="showMenu()"></i>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="header">
+    <div class="text-box">
+      <span class="eyebrow">MM-Innovation Tech</span>
+      <h1>Empowering the Future with <span class="highlight">Cutting-Edge</span> Software Solutions</h1>
+      <p>Providing world-class IT solutions globally.<br>Learn from the best in software innovation.</p>
+      <div class="btn-group">
+        <a href="contact.html" class="hero-btn primary">Get In Touch</a>
+        <a href="services.html" class="hero-btn outline">Our Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section class="Services">
+    <p class="section-label">What We Do</p>
+    <h2 class="section-title">Services We Offer</h2>
+    <p class="section-sub">MM-INNOVATION TECH: Your one-stop solution for software, hardware, AI, websites, and web systems.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-code"></i></div>
+        <h3>Web App Development</h3>
+        <ul>
+          <li>Custom Web Application Development</li>
+          <li>Progressive Web App (PWA) Development</li>
+          <li>Natural Language Processing (NLP) Systems</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-globe"></i></div>
+        <h3>Website Development</h3>
+        <ul>
+          <li>Responsive Website Design</li>
+          <li>SEO Services & Optimization</li>
+          <li>E-commerce Solutions</li>
+          <li>CMS (WordPress, Drupal, Joomla)</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-mobile"></i></div>
+        <h3>Mobile App Development</h3>
+        <ul>
+          <li>iOS & Android App Development</li>
+          <li>Machine Learning Models</li>
+          <li>NLP Integration</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-brain fa-fw"></i>&#x1F9E0;</div>
+        <h3>Artificial Intelligence</h3>
+        <ul>
+          <li>AI Consulting & Strategy</li>
+          <li>Machine Learning Model Development</li>
+          <li>NLP & Predictive Analytics</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa fa-cogs"></i></div>
+        <h3>Other Business Services</h3>
+        <ul>
+          <li>API Development & Integration</li>
+          <li>Cloud Services & Storage</li>
+          <li>Quality Assurance & Testing</li>
+          <li>UI/UX Design</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPANY LOCATIONS ── -->
+  <section class="company">
+    <p class="section-label">Where We Are</p>
+    <h2 class="section-title">Our Company</h2>
+    <p class="section-sub">We pride ourselves on delivering high-quality, customised solutions that empower businesses to reach new heights.</p>
+
+    <div class="company-grid">
+      <div class="company-col">
+        <img src="images/london.png" alt="Nelspruit Office">
+        <div class="layer"><h3>NELSPRUIT</h3></div>
+      </div>
+      <div class="company-col">
+        <img src="images/newyork.png" alt="Nelspruit Office">
+        <div class="layer"><h3>NELSPRUIT</h3></div>
+      </div>
+      <div class="company-col">
+        <img src="images/washington.png" alt="Nelspruit Office">
+        <div class="layer"><h3>NELSPRUIT</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FACILITIES ── -->
+  <section class="facilities">
+    <p class="section-label">Our Space</p>
+    <h2 class="section-title">Our Facilities</h2>
+    <p class="section-sub">At MM-INNOVATION TECH, we believe in creating an environment that fosters innovation, collaboration, and excellence.</p>
+
+    <div class="facilities-grid">
+      <div class="facilities-col">
+        <img src="images/pexels-ola-dapo-1754561-3345882.jpg" alt="Brainstorming">
+        <div class="facilities-col-body">
+          <h3>Brainstorming</h3>
+          <p>We believe that innovation is the key to staying ahead of the curve.</p>
+        </div>
+      </div>
+      <div class="facilities-col">
+        <img src="images/pexels-divinetechygirl-1181675.jpg" alt="Workspace">
+        <div class="facilities-col-body">
+          <h3>Workspace</h3>
+          <p>Our workspace features ergonomic furniture, high-speed internet, and secure networking.</p>
+        </div>
+      </div>
+      <div class="facilities-col">
+        <img src="images/pexels-joshsorenson-1714208.jpg" alt="Office">
+        <div class="facilities-col-body">
+          <h3>Office</h3>
+          <p>Our modern office space fosters collaboration and productivity, with open areas, private meeting rooms, and state-of-the-art technology.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLIENT TESTIMONIALS ── -->
+  <section class="testimonials" style="background: var(--bg);">
+    <span class="testi-section-label" style="display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(0,229,255,0.18);background:rgba(0,229,255,0.06);padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:0.8rem;">Client Testimonials</span>
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-sub">Explore our products and services and take your business to the next level.</p>
+
+    <div class="testimonials-grid">
+      <div class="testimonials-col">
+        <div class="testi-header">
+          <img src="images/user1.jpg" alt="John M.">
+          <div>
+            <h3>John M.</h3>
+            <div class="role">CEO, Tech Innovators Inc.</div>
+          </div>
+        </div>
+        <p class="testi-quote">Working with MM-INNOVATION TECH has been an absolute game-changer for our business. Their innovative approach to web app development and AI has significantly improved our operational efficiency.</p>
+        <div class="stars">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+        </div>
+      </div>
+
+      <div class="testimonials-col">
+        <div class="testi-header">
+          <img src="images/user2.jpg" alt="David P.">
+          <div>
+            <h3>David P.</h3>
+            <div class="role">CTO, FinTech Innovations</div>
+          </div>
+        </div>
+        <p class="testi-quote">The team truly understands user-friendly interface design and seamless integration. Our website and mobile app have received outstanding feedback from our clients.</p>
+        <div class="stars">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+        </div>
+      </div>
+
+      <div class="testimonials-col">
+        <div class="testi-header">
+          <img src="images/user1.jpg" alt="Sarah L.">
+          <div>
+            <h3>Sarah L.</h3>
+            <div class="role">Founder, Creative Solutions Ltd</div>
+          </div>
+        </div>
+        <p class="testi-quote">MM-INNOVATION TECH delivered beyond our expectations. Their proficiency in AI and web systems helped us develop cutting-edge solutions that set us apart in the market.</p>
+        <div class="stars">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTERN TESTIMONIALS ── -->
+  <section class="testimonials" style="background: var(--bg2);">
+    <span class="testi-section-label" style="display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent2);border:1px solid rgba(123,97,255,0.2);background:rgba(123,97,255,0.07);padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:0.8rem;">Intern Testimonials</span>
+    <h2 class="section-title">Voices from Our Interns</h2>
+    <p class="section-sub">Hear from the next generation of innovators who trained with us.</p>
+
+    <div class="testimonials-grid">
+      <div class="testimonials-col">
+        <div class="testi-header">
+          <img src="images/user1.jpg" alt="Emma R.">
+          <div>
+            <h3>Emma R.</h3>
+            <div class="role">Software Development Intern</div>
+          </div>
+        </div>
+        <p class="testi-quote">My internship at MM-INNOVATION TECH has been an incredible learning experience. The supportive environment and hands-on projects allowed me to grow both technically and personally.</p>
+        <div class="stars">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i>
+        </div>
+      </div>
+
+      <div class="testimonials-col">
+        <div class="testi-header">
+          <img src="images/user2.jpg" alt="Alex T.">
+          <div>
+            <h3>Alex T.</h3>
+            <div class="role">AI Research Intern</div>
+          </div>
+        </div>
+        <p class="testi-quote">Interning at MM-INNOVATION TECH was a remarkable opportunity to work on real-world AI projects. The collaborative culture and access to cutting-edge technology provided me with invaluable insights.</p>
+        <div class="stars">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+        </div>
+      </div>
+
+      <div class="testimonials-col">
+        <div class="testi-header">
+          <img src="images/user1.jpg" alt="Lily M.">
+          <div>
+            <h3>Lily M.</h3>
+            <div class="role">Web Development Intern</div>
+          </div>
+        </div>
+        <p class="testi-quote">My time at MM-INNOVATION TECH was transformative. I worked on diverse web development projects, which honed my skills and expanded my understanding of the industry.</p>
+        <div class="stars">
+          <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta">
+    <h1>Enroll for Our Various<br>Online Courses Anywhere</h1>
+    <a href="contact.html" class="hero-btn primary">Contact Us</a>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="font-size:1.1rem;">MM<span>-INNOVATION</span></a>
+        <p>Learn more about our mission to groom young entrepreneurs to the highest level of innovation and excellence.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Web App Dev</a></li>
+          <li><a href="services.html">Website Dev</a></li>
+          <li><a href="services.html">Mobile Apps</a></li>
+          <li><a href="services.html">AI Solutions</a></li>
+          <li><a href="services.html">Cloud Services</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><i class="fa fa-map-marker"></i> Mbombela, Mpumalanga</li>
+          <li><i class="fa fa-phone"></i><a href="tel:+27725335234">(+27) 72 5335 234</a></li>
+          <li><i class="fa fa-envelope"></i><a href="mailto:info@mm-innovation.com">info@mm-innovation.com</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div style="margin-bottom: 3rem;">
+      <p class="section-label" style="margin-bottom: 1rem;">Send Us a Message</p>
+      <div class="contact-wrapper">
+        <div>
+          <div class="contact-form-group">
+            <input type="text" placeholder="Your Name" name="name" required>
+          </div>
+          <div class="contact-form-group">
+            <input type="email" placeholder="Your Email" name="email" required>
+          </div>
+          <div class="contact-form-group">
+            <textarea placeholder="Your Message" name="message" required></textarea>
+          </div>
+          <button class="send-btn" type="button">
+            <i class="fa fa-paper-plane"></i> Send Message
+          </button>
+        </div>
+        <div class="direct-contact">
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-map-marker"></i></div>
+            <div>
+              <p>Location</p>
+              <span>Mbombela, Mpumalanga</span>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-phone"></i></div>
+            <div>
+              <p>Phone</p>
+              <a href="tel:+27725335234">(+27) 72 5335 234</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fa fa-envelope"></i></div>
+            <div>
+              <p>Email</p>
+              <a href="mailto:info@mm-innovation.com">info@mm-innovation.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2024 MM-INNOVATION TECH. All rights reserved.</span>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showMenu() {
+      document.getElementById('navLinks').classList.add('open');
+    }
+    function hideMenu() {
+      document.getElementById('navLinks').classList.remove('open');
+    }
+  </script>
+</body>
+</html>
